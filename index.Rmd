@@ -5,67 +5,60 @@ output: html_document
 
 ### Introduction
 
-An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
+The problem of incarceration has been plaguing the United States for decades now, especially the disproportionate policing rates of people of color. We will explore these rates and percentages, specifically the statistics pertaining to White and Black people. These two polarizing groups make up the majority the US population and represent two parties, those in power and those void of power. Some variables that we will be focusing on are how the populations of these two groups have changed in prison. We will also be keeping track of the population proportion of the two groups in prison and how those have changed over time. Exploring these variables will help viewers have a better understanding of the disproportionate rates of incarceration that is occurring in the United States. We will be tracking these statistics using data from prisoners from ages 15 - 64 years old, as this age range has the most accurate data to work with.
 
 ### Summary Information
-
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-These will likely be calculated using your DPLYR skills, answering questions such as: 
-
-- What is the average value of my variable across all the counties (in the current year)?
-- Where is my variable the highest / lowest?
-- How much has my variable change over the last N years?
-
-Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
+```{r summary info, echo=FALSE, message=FALSE}
+source("summary.R")
+options(scipen=999)
+```
+Looking at the data of prisoners from the age of 15-64, we can see a lot of differences between the population of White and Black prisoners. **In 1990, we found that the average population of prisoners was `r avg_population_15to64_1990`**, while the **average in 2018 was `r avg_population_15to64_2018`**, which was an **average increase of `r avg_pop_increase_percent`%**. This increase was concerning, but when we looked at the average population increase of Black and White prisoners, we found a much larger problem. In **1990, the average population of Black prisoners was `r avg_black_pop_15to64_1990`**, while the **average in 2018 was `r avg_black_pop_15to64_2018`**, which was a whopping **`r avg_black_pop_increase`% average increase**. If we compare this to **White prisoners, in 1990, their average population was `r avg_white_pop_15to64_1990`**, while in **2018 their average was `r avg_white_pop_15to64_2018`**, making it only a **`r avg_white_pop_increase`% average increase**. These percentages stick out like a sore thumb and it prompts us to think of why this is.
 
 ### The Dataset
 
-Who collected the data?  
-How was the data collected or generated?  
-Why was the data collected?  
-How many observations (rows) are in your data?  
-How many features (columns) are in the data?  
-What, if any, ethical questions or questions of power do you need to consider when working with this data?  
-What are possible limitations or problems with this data?   (at least 200 words)
+Who collected the data?
 
+* Vera Institute
+
+How was the data collected or generated?
+
+* The dataset was assembled using information collected by the U.S. Department of Justice Bureau of Justice Statistics (BJS), supplemented with data from state departments of correction when federal data is not available.
+
+Why was the data collected?
+
+* The data was collected to observe the incarceration rates among different demographics in prisons and jails.
+
+How many observations (rows) are in your data?
+
+* There are 153,811 observations in the data.
+
+How many features (columns) are in the data?
+
+* There are 36 features in the data.
+
+What, if any, ethical questions or questions of power do you need to consider when working with this data?
+
+* When working with this data, we need to make sure that we don't create any biases within our work by excluding or including certain data, otherwise known as cherry-picking.
+
+What are possible limitations or problems with this data?
+
+* A big limitation in this dataset is that there are a lot of years where certain pieces of data are missing. This causes problems because we will naturally have to cherry-pick years that our data comes from due to the fact that certain data is missing from certain years. Problems will emerge where we need to constantly check if data from a certain year is available to us and make changes accordingly. Another big problem with this data is that it is a compilation of different sources, coming from the Nations Corrections Reporting Program (NCRP), the Deaths in Custody Reporting Program (DCRP) the Annual Survey of Jails (ASJ), the Census of Jails (COJ), the Centers for Disease Control and Prevention (CDC), the U.S. Department of Agriculture (USDA), and the U.S. Census Bureau. This is a problem because they have different methods and criteria for collecting data, which can lead to discrepancies in the dataset. For example, the geographic data from the USDA and U.S. Census Bureau may be different from the population data from the NCRP, which will cause our work to be much different from reality. Although this is a possible problem, the data provided from the USDA and U.S. Census Bureau makeup the least amount of the data in the set, so the problem is more likely to be smaller.
 
 ### Trends Over Time Chart
-
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The first chart that you will create and include will show the trend over time of your variable/topic. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - This may mean showing the same measure for different locations or different racial groups. Think carefully about a meaningful comparison of locations (e.g., the top 10 counties in a state, top 10 states, etc.)
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = FALSE, code = readLines("chart1.R")}
 ```
+
+In this chart we can see the percent increase of Black and White prisoners starting from 1990 to 2018. The graph shows a stark contrast between Black and White prisoners, where Black prisoners end up over 50% increase, while White prisoners end at under 5% in 2018.
 
 ### Variable Comparison Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+```{r, echo = FALSE, code = readLines("chart2.R")}
+```
 
-The second chart that you will create and include will show how two different (continuous) variables are related to one another. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- If you choose to add a color encoding (not required), you need a legend for your different color and a clear legend title
+This chart shows the percentage of Black and White population to total population from 1990 to 2018. It shows a concerning pattern of how Black prisoners are increasing while White prisoners are quickly decrease. Another concern that this chart raises is that according to the Census, White people make up 75.5% of the US population, while Black people make up only 13.6%. And comparing these numbers to the graph, we see that the White prison population is much less than their US population, while the Black prison population in greater.
 
 ### Map
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The last chart that you will create and include will show how a variable is distributed geographically. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Your map needs a title
-- Your color scale needs a legend with a clear label
-- Use a map based coordinate system to set the aspect ratio of your map
+```{r, echo = FALSE, code = readLines("map.R")}
+```
 
